@@ -8,3 +8,5 @@
     <sql:param value="${param.nbPage}" />
     <sql:param value="${param.domaine}" />
 </sql:update>
+    <!--c:set scope="session" value="Livre a été bien ajouté, voire list des Livre !" var="sm"/-->
+  <c:redirect url ="Listlivres.jsp"/>

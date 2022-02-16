@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<sql:setDataSource var="DS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/bibliotheque" user="root" password=""/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,9 +44,13 @@
     <div class="center bg-text">
         
      <div class="box">
+         
          <form action="addAuteur.jsp" method="post">
             <legend>Information d'auteur</legend>
             <br><br>
+            <!--p style="color:green">
+                <!--c:out value="${sm}"/-->
+            </p-->
             <div class="form-group ">
               <label for="exampleFormControlInput1">Nom</label>
               <input type="text" class="form-control" style="width: 25em;" id="exampleFormControlInput1" name="nom" placeholder="nom d'auteur">
