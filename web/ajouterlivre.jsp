@@ -41,7 +41,7 @@
     <div class="center bg-text">
         
      <div class="box">
-         <form method="post" action ="ajouterLivre">
+        <form method="post" action ="addLivre.jsp">
             <legend>Informations du livre</legend>
             <br>
             <div class="form-group ">
@@ -66,39 +66,6 @@
                 <label for="exampleFormControlTextarea1">Resume du livre</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="resume"></textarea>
               </div>
-              
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">auteur</label>
-                <%
-                 List auteurList = new ArrayList();
-                 auteurList = (ArrayList)session.getAttribute("auteurList");
-                 if(auteurList != null && auteurList.size()>0) {
-                     %>
-                <select class="form-control" name="auteur" id="exampleFormControlSelect1">
-                   <% 
-                                for(int i=0;i<auteurList.size();i++){
-
-                   List auteur=(List)auteurList.get(i);
-
-                   %>
-
-                   <tr>
-
-                 <option><%=auteur.get(1)+" "+auteur.get(2) %></option>
-                             <%
-
-                       }
-
-                   }else{
-
-                   %>
-                   <option>  pasd'auteur disponible</option>
-
-
-                   <%}%>
-                </select>
-              </div>
-            </div>
             <p><br><button type="submit" class="btn btn-warning mb-2" style="float: right;">Ajouter livre</button></p>
         </form>
      </div>

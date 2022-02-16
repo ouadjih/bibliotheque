@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 9 juil. 2021, 17:25:40
-    Author     : Pavilion
+    Author     : Ouadjih
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -46,7 +46,7 @@
       </form>
     </div>
     <div class="droit bg-text">
-      <form action="auth" method="POST">
+      <form action="login.jsp" method="POST">
         <p>Se Connecter</p>
         <div class="input-group mb-3">
           <div class="input-group-prepend">

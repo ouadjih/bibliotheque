@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +40,7 @@ pageEncoding="ISO-8859-1"%>
     <div class="center bg-text">
         
      <div class="box">
-         <form action="ajouterAuteur" method="post">
+         <form action="addAuteur.jsp" method="post">
             <legend>Information d'auteur</legend>
             <br><br>
             <div class="form-group ">
