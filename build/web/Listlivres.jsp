@@ -9,6 +9,7 @@
     <sql:query dataSource="${DS}" var="result"> 
          select * from livre;
     </sql:query>
+    
          
 <!DOCTYPE html>
 <html lang="en">
@@ -59,14 +60,18 @@
                         <th>resume</th>
                         <th>nbpage</th>
                         <th>domaine</th>
+                        <th>Auteur</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:choose>
                          <c:when test="${result != null}">
                             <c:forEach var="row" items="${result.rows}">
+                                <sql:query dataSource="${DS}" var="rr"> 
+                                    select * from auteur where num = '${row.num}';
+                                </sql:query>
                                  <tr>
-                                     <td>${row.issn}</td>
+                                    <td>${row.issn}</td>
 
                                     <td>${row.titre}</td>
 
@@ -75,6 +80,8 @@
                                     <td>${row.nbpage}</td>
 
                                     <td>${row.domaine}</td>
+                                    
+                                    <td>auteurName</td>
 
                                 </tr>
                             </c:forEach>
