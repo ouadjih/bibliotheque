@@ -1,13 +1,14 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
 <c:set var="query" value="${param.q}" scope="session" />
 <c:set var="type" value="${param.type}" scope="session" />
 <sql:setDataSource var="DS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/bibliotheque" user="root" password=""/>
 <c:choose>
   <c:when test="${type == 'Auteur'}">
-    <sql:query dataSource="${DS}" var="resultat"> 
-      SELECT * FROM livre where num = '${query}';
-    </sql:query>
+  <sql:query dataSource="${DS}" var="resultat"> 
+    SELECT * FROM livre where num = '${query}';
+  </sql:query>
   </c:when>
   <c:when test="${type == 'Livre'}">
     <sql:query dataSource="${DS}" var="resultat"> 
@@ -34,7 +35,7 @@
     </c:choose>
   </c:otherwise>
 </c:choose>
-   
+
 <!--c:set scope="session" value="Auteur a été bien ajouté, voire list des auteurs !" var="sm"/-->
 <html lang="en">
   <head>
@@ -43,7 +44,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
@@ -88,12 +88,12 @@
                 <th>Domaine</th>
               </tr>
               <c:forEach var="row" items="${resultat.rows}">
-                <tr>
-                  <td><c:out value="${row.issn}"/></td>
-                  <td><c:out value="${row.titre}"/></td>
-                  <td><c:out value="${row.nbpage}"/></td>
-                  <td><c:out value="${row.domaine}"/></td>
-                </tr>
+              <tr>
+                <td><c:out value="${row.issn}"/></td>
+                <td><c:out value="${row.titre}"/></td>
+                <td><c:out value="${row.nbpage}"/></td>
+                <td><c:out value="${row.domaine}"/></td>
+              </tr>
               </c:forEach>
             </c:otherwise>
           </c:choose>
@@ -103,22 +103,22 @@
     </div>
   </body>
   <script>
-var auteur = document.getElementById("Auteur");
-var livre = document.getElementById("Livre");
-var domaine = document.getElementById("Domaine");
-var input = document.getElementById("MyQuery");
+    var auteur = document.getElementById("Auteur");
+    var livre = document.getElementById("Livre");
+    var domaine = document.getElementById("Domaine");
+    var input = document.getElementById("MyQuery");
 
-auteur.onclick = function() {
-  input.placeholder = "Entrer le num d'auteur";
-}
+    auteur.onclick = function() {
+      input.placeholder = "Entrer le num d'auteur";
+    }
 
-livre.onclick = function() {
-  input.placeholder = "Entrer le titre de livre";
-}
+    livre.onclick = function() {
+      input.placeholder = "Entrer le titre de livre";
+    }
 
-domaine.onclick = function() {
-  input.placeholder = "Entrer le domaine";
-}
+    domaine.onclick = function() {
+      input.placeholder = "Entrer le domaine";
+    }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
