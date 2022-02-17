@@ -1,5 +1,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
+<c:if test="${session == null }">
+    <c:redirect url="index.jsp"></c:redirect>
+</c:if>
+
 <sql:setDataSource var="DS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/bibliotheque" user="root" password=""/>
     <sql:query dataSource="${DS}" var="result"> 
          select * from auteur;
@@ -40,7 +45,7 @@
           </form>
     </div>
         <div class="position-absolute  end-0 "style="top:1.5em; ">
-            <a href="logout" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
+            <a href="logout.jsp" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
 
         </div>
 

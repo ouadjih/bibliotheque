@@ -1,3 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${session == null }">
+    <c:redirect url="index.jsp"></c:redirect>
+</c:if>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 
@@ -34,7 +39,7 @@ pageEncoding="ISO-8859-1"%>
     </div>
     <div class="gauche bg-text "> 
         <div class="position-absolute  end-0 "style="top:1em; ">
-            <a href="logout" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
+            <a href="logout.jsp" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
         </div>
         
             <div class="card w-50 text-light bg-light mx-auto" >

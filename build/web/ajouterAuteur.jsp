@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-<sql:setDataSource var="DS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/bibliotheque" user="root" password=""/>
+
+<c:if test="${session == null }">
+    <c:redirect url="index.jsp"></c:redirect>
+</c:if>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +39,7 @@
           </form>
     </div>
         <div class="position-absolute  end-0 "style="top:1.2em; ">
-            <a href="logout" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
-
+            <a href="logout.jsp" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
         </div>
 
     <div class="center bg-text">
@@ -48,8 +49,6 @@
          <form action="addAuteur.jsp" method="post">
             <legend>Information d'auteur</legend>
             <br><br>
-            <!--p style="color:green">
-                <!--c:out value="${sm}"/-->
             </p-->
             <div class="form-group ">
               <label for="exampleFormControlInput1">Nom</label>
