@@ -55,15 +55,18 @@
       <form action="resultatRecherche.jsp" method="GET">
         <c:out value="<p>Chercher dans la bibliotheque</p>" escapeXml="false" />
         <div class="input-group">
-          <input type="text" class="form-control" aria-label="Text input with dropdown button" name="recherche">
+          <input id="MyQuery" type="text" class="form-control" aria-label="Text input with dropdown button" name="q" placeholder='Rechercher'>
           <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">Rechercher par</button>
           <ul class="dropdown-menu">
             <c:set var="items">Auteur,Titre,Domaine</c:set>
-            <c:forTokens items="${items}" delims="," var="letter">
-            <c:if test="${letter != 'Auteur'}">
-            <li><hr class="dropdown-divider"></li>
-            </c:if>
-            <li><input type="radio" name="type" value="${letter}"> ${letter}</li>
+            <c:forTokens items="${items}" delims="," var="choice">
+              <c:if test="${choice != 'Auteur'}">
+                <li><hr class="dropdown-divider"></li>
+              </c:if>
+              <li>
+                <input id="${choice}" name="type" type="radio" value="${choice}">
+                <label for="${choice}"> ${choice}</label>
+              </li>
             </c:forTokens>
           </ul>
         </div>
@@ -100,6 +103,24 @@
     </div>
     </div>
   </body>
+  <script>
+var auteur = document.getElementById("Auteur");
+var livre = document.getElementById("Livre");
+var domaine = document.getElementById("Domaine");
+var input = document.getElementById("MyQuery");
+
+auteur.onclick = function() {
+  input.placeholder = "Entrer le num d'auteur";
+}
+
+livre.onclick = function() {
+  input.placeholder = "Entrer le titre de livre";
+}
+
+domaine.onclick = function() {
+  input.placeholder = "Entrer le domaine";
+}
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>

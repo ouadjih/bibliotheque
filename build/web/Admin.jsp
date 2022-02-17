@@ -22,20 +22,25 @@ pageEncoding="ISO-8859-1"%>
 <body>
   <div id="grand-div">
     <div class="position-absolute top-0 start-50 translate-middle" style="margin-top :2em;">
-        <form  method="get" action="Search">
-            
-            <div class="input-group  p-3">
-              <input type="text" class="form-control" aria-label="Text input with dropdown button" name="type" placeholder="Chercher un livre">
-              <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true" aria-required="true" >Rechercher par</button>
-              <ul class="dropdown-menu dropdown-menu">
-                <li><input type="radio" name="recherche" value="auteur">auteur</li>
+      <form action="resultatRecherche.jsp" method="GET">
+        <c:out value="<p>Chercher dans la bibliotheque</p>" escapeXml="false" />
+        <div class="input-group">
+          <input id="MyQuery" type="text" class="form-control" aria-label="Text input with dropdown button" name="q" placeholder='Rechercher'>
+          <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">Rechercher par</button>
+          <ul class="dropdown-menu">
+            <c:set var="items">Auteur,Titre,Domaine</c:set>
+            <c:forTokens items="${items}" delims="," var="choice">
+              <c:if test="${choice != 'Auteur'}">
                 <li><hr class="dropdown-divider"></li>
-                <li><input type="radio" name="recherche" value="titre" >titre</li>
-                <li><hr class="dropdown-divider"></li>
-                <li><input type="radio" name="recherche" value="domaine">domaine</li>
-              </ul>
-            </div>
-          </form>
+              </c:if>
+              <li>
+                <input id="${choice}" name="type" type="radio" value="${choice}">
+                <label for="${choice}"> ${choice}</label>
+              </li>
+            </c:forTokens>
+          </ul>
+        </div>
+      </form>
     </div>
     <div class="gauche bg-text "> 
         <div class="position-absolute  end-0 "style="top:1em; ">
@@ -84,6 +89,24 @@ pageEncoding="ISO-8859-1"%>
         </div>      
     </div> 
   </div>
+  <script>
+var auteur = document.getElementById("Auteur");
+var livre = document.getElementById("Livre");
+var domaine = document.getElementById("Domaine");
+var input = document.getElementById("MyQuery");
+
+auteur.onclick = function() {
+  input.placeholder = "Entrer le num d'auteur";
+}
+
+livre.onclick = function() {
+  input.placeholder = "Entrer le titre de livre";
+}
+
+domaine.onclick = function() {
+  input.placeholder = "Entrer le domaine";
+}
+  </script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
