@@ -1,4 +1,15 @@
-<%@page import="java.util.*"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
+<c:if test="${session == null }">
+    <c:redirect url="index.jsp"></c:redirect>
+</c:if>
+
+<sql:setDataSource var="DS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/bibliotheque" user="root" password=""/>
+    <sql:query dataSource="${DS}" var="result"> 
+         select * from livre;
+    </sql:query>
+         
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,82 +44,50 @@
             </div>
           </form>
     </div>
-        <div class="position-absolute  end-0 "style="top:1.5em; ">
-            <a href="logout" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
-
-        </div>
-
-    <div class="center bg-text">
-        
-     <div class="box">
-        <form>
-            <legend>liste des Livres</legend>
-            <br><br>
-            <table class="table table-bordered table-responsive " style="width: 40em; overflow: hidden; background-color:rgba(160, 164, 165, 0.13);">
-
-        <%
-            List livreList = new ArrayList();
-            livreList = (ArrayList)request.getAttribute("livreList");
-            if(livreList != null && livreList.size()>0) {
-        %>
-        <tr>
-
-            <th>issn</th>
-
-            <th>titre</th>
-            
-            <th>resume</th>
-
-            <th>nbpage</th>
-            
-            <th>domaine</th>
-
-        </tr>
-
-        <%
-
-        for(int i=0;i<livreList.size();i++){
-
-        List livre=(List)livreList.get(i);
-
-        %>
-
-        <tr>
-
-        <td><%=livre.get(0) %></td>
-
-        <td><%=livre.get(1) %></td>
-        
-        <td><%=livre.get(2) %></td>
-
-        <td><%=livre.get(3) %></td>
-
-        <td><%=livre.get(4) %></td>
-
-        </tr>
-
-        <%
-
-            }
-
-        }else{
-
-        %>
-        <tr>
-
-            <td>pas  de livre disponible</td>
-
-        </tr>
-
-        <%}%>
-
-        </table>
-        </form>
-     </div>
+    <div class="position-absolute  end-0 "style="top:1.5em; ">
+        <a href="logout.jsp" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
     </div>
 
-    
- </body>
+    <div class="center bg-text">      
+        <div class="box">
+            <legend>liste des livres</legend><br><br>
+            <table class="table table-bordered table-responsive " style="width: 40em; overflow: hidden; background-color:rgba(160, 164, 165, 0.13);">
+                    <thead>
+                     <tr>
+                        <th>issn</th>
+                        <th>titre</th>
+                        <th>resume</th>
+                        <th>nbpage</th>
+                        <th>domaine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:choose>
+                         <c:when test="${result != null}">
+                            <c:forEach var="row" items="${result.rows}">
+                                 <tr>
+                                     <td>${row.issn}</td>
+
+                                    <td>${row.titre}</td>
+
+                                    <td>${row.resume}</td>
+
+                                    <td>${row.nbpage}</td>
+
+                                    <td>${row.domaine}</td>
+
+                                </tr>
+                            </c:forEach>
+                         </c:when>
+                         <c:otherwise>
+                            <c:out value="Pas de livre disponible !"/>
+                         </c:otherwise>
+                        </c:choose>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</body>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

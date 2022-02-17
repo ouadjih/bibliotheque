@@ -8,16 +8,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <style>  
-.bg-text {
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-  color: white;
-  font-weight: bold;
-  border: 3px solid #f1f1f1;
-}
-li {
-  margin-right: 15px;
-}
+    .bg-text {
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+      color: white;
+      font-weight: bold;
+      border: 3px solid #f1f1f1;
+    }
+    li {
+      margin-right: 15px;
+    }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
@@ -42,7 +42,7 @@ li {
         </form>
       </div>
       <div class="droit bg-text">
-        <form action="login.jsp" method="POST">
+        <form action="index.jsp" method="POST">
           <p>Se Connecter</p>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -57,6 +57,18 @@ li {
             <input type="password" class="form-control" placeholder="Type..." aria-label="Username" aria-describedby="basic-addon1" name="pass">
           </div>
           <button type="submit" class="btn btn-light mb-1 " id="button" style="align-items: center;">Login</button>
+        <c:if test="${param.user != null}">
+          <c:set var="user" value="${param.user}" scope="request" />
+          <c:set var="pass" value="${param.pass}" scope="request" />
+          <c:if test="${user == 'admin' && pass == 'admin'}">
+              <c:set var="session" value="admin" scope="session"  />
+              <c:redirect url="Admin.jsp"></c:redirect>
+          </c:if>
+          <c:if test="${user != 'admin' || pass != 'admin'}">
+              <c:remove var="session"/> 
+              <c:redirect url="index.jsp"></c:redirect>
+          </c:if>
+        </c:if>
         </form>
       </div>
     </div>

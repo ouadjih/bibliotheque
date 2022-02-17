@@ -1,5 +1,15 @@
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
+<c:if test="${session == null }">
+    <c:redirect url="index.jsp"></c:redirect>
+</c:if>
+
+<sql:setDataSource var="DS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/bibliotheque" user="root" password=""/>
+    <sql:query dataSource="${DS}" var="result"> 
+         select * from auteur;
+    </sql:query>
+         
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,71 +45,49 @@
           </form>
     </div>
         <div class="position-absolute  end-0 "style="top:1.5em; ">
-            <a href="logout" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
+            <a href="logout.jsp" ><img src="img/logout1.png" class="logout"alt="Se Deconnecter"></a>
 
         </div>
 
-    <div class="center bg-text">
+<div class="center bg-text">
         
      <div class="box">
-        <form>
-            <legend>liste des Auteurs</legend>
-            <br><br>
-            <table class="table table-bordered table-responsive " style="width: 40em; overflow: hidden; background-color:rgba(160, 164, 165, 0.13);">
-                    <%
-                 List auteurList = new ArrayList();
-                 auteurList = (ArrayList)request.getAttribute("auteurList");
-                 if(auteurList != null && auteurList.size()>0) {
-             %>
+        <legend>liste des Auteurs</legend>
+        <br><br>
+          
+        <table class="table table-bordered table-responsive " style="width: 40em; overflow: hidden; background-color:rgba(160, 164, 165, 0.13);">
                 <thead>
                   <tr>
-                      <th scope="col">Num</th>
+                    <th scope="col">Num</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prenom</th>
                     <th scope="col">Date Naissance</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <%
+                    <c:choose>
+                     <c:when test="${result != null}">
+                        <c:forEach var="row" items="${result.rows}">
+                             <tr>
+                                 <td>${row.num}</td>
 
-        for(int i=0;i<auteurList.size();i++){
+                                <td>${row.nom}</td>
 
-        List auteur=(List)auteurList.get(i);
+                                <td>${row.prenom}</td>
 
-        %>
+                                <td>${row.dateNaissance}</td>
 
-        <tr>
-
-        <td><%=auteur.get(0) %></td>
-
-        <td><%=auteur.get(1) %></td>
-
-        <td><%=auteur.get(2) %></td>
-
-        <td><%=auteur.get(3) %></td>
-
-        </tr>
-
-        <%
-
-            }
-
-        }else{
-
-        %>
-        <tr>
-
-            <td> pas  22d'auteur disponible</td>
-
-        </tr>
-
-        <%}%>
-                  
+                            </tr>
+                        </c:forEach>
+                     </c:when>
+                     <c:otherwise>
+                        <c:out value="Pas d'auteur disponible !"/>
+                     </c:otherwise>
+                    </c:choose>
                 </tbody>
-              </table>
-        </form>
+        </table>
      </div>
-    </div>
+ </div>
 
     
  </body>
