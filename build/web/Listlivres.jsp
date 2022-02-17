@@ -31,7 +31,6 @@
     </div>
     <div class="position-absolute top-0 start-50 translate-middle" style="margin-top :2.5em;">
       <form action="resultatRecherche.jsp" method="GET">
-        <c:out value="<p>Chercher dans la bibliotheque</p>" escapeXml="false" />
         <div class="input-group">
           <input id="MyQuery" type="text" class="form-control" aria-label="Text input with dropdown button" name="q" placeholder='Rechercher'>
           <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">Rechercher par</button>
@@ -86,7 +85,7 @@
 
                                     <td>${row.domaine}</td>
                                     
-                                    <td>auteurName</td>
+                                    <td>rr[0].nom</td>
 
                                 </tr>
                             </c:forEach>
