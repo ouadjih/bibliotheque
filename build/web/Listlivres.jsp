@@ -71,7 +71,7 @@
                          <c:when test="${result != null}">
                             <c:forEach var="row" items="${result.rows}">
                                  <tr>
-                                     <td>${row.issn}</td>
+                                    <td>${row.issn}</td>
 
                                     <td>${row.titre}</td>
 
