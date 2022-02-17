@@ -21,11 +21,10 @@ li {
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
-
   <body>
     <div class="grand-div">
       <div class="gauche bg-text">
-        <form method="get" action="Search">
+        <form action="resultatRecherche.jsp" method="GET">
           <c:out value="<p>Chercher dans la bibliotheque</p>" escapeXml="false" />
           <div class="input-group">
             <input type="text" class="form-control" aria-label="Text input with dropdown button" name="recherche">
