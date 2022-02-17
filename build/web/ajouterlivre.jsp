@@ -80,7 +80,7 @@
                      <c:when test="${result != null}">
                         <select class="form-select" aria-label="Default select example" name="num">
                                 <c:forEach var="row"  items="${result.rows}">
-                                    <option value=${row.num}>${row.nom}${row.prenom}</option>  
+                                    <option value=${row.num}>${row.nom} ${row.prenom}</option>  
                                 </c:forEach>
                         </select>
                      </c:when>  
