@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <c:if test="${session == null }">
     <c:redirect url="index.jsp"></c:redirect>
 </c:if>
+<sql:setDataSource var="DS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/bibliotheque" user="root" password=""/>
+    <sql:query dataSource="${DS}" var="result"> 
+         select * from auteur;
+    </sql:query>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,6 +73,21 @@
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">Resume du livre</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="resume"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Auteur de livre</label>
+                    <c:choose>
+                     <c:when test="${result != null}">
+                        <select class="form-select" aria-label="Default select example" name="num">
+                                <c:forEach var="row"  items="${result.rows}">
+                                    <option value=${row.num}>${row.nom}${row.prenom}</option>  
+                                </c:forEach>
+                        </select>
+                     </c:when>  
+                      <c:otherwise>
+                        <c:out value="Pas d'auteur disponible !"/>
+                     </c:otherwise>
+                    </c:choose>
               </div>
             <p><br><button type="submit" class="btn btn-warning mb-2" style="float: right;">Ajouter livre</button></p>
         </form>
