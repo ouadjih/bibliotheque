@@ -50,7 +50,7 @@
 
     <div class="center bg-text">      
         <div class="box">
-            <legend>liste des livres</legend><br><br>
+            <legend>Liste des livres</legend><br><br>
             <table class="table table-bordered table-responsive " style="width: 40em; overflow: hidden; background-color:rgba(160, 164, 165, 0.13);">
                     <thead>
                      <tr>

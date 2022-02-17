@@ -52,7 +52,7 @@
 <div class="center bg-text">
         
      <div class="box">
-        <legend>liste des Auteurs</legend>
+        <legend>Liste des Auteurs</legend>
         <br><br>
           
         <table class="table table-bordered table-responsive " style="width: 40em; overflow: hidden; background-color:rgba(160, 164, 165, 0.13);">
