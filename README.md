@@ -3,7 +3,7 @@ Website to manage books in a library with many functionalities such as: Adding b
 
 ## Installation
 
-> `MySQL` version 5.6 or up is required
+> `MySQL` version 5.6 or up is required, `Glassfish` server is also required.
 1. Run this to clone this repo executable:
 ```bash
 $ git clone https://github.com/ouadjih/bibliotheque
@@ -15,4 +15,8 @@ $ cd bibliotheque
 3. Import the database (create a database first using mysql):
 ```bash
 $ mysql -D [your database] < database.sql
+```
+4. Next steps would be to import the project into netbeans and running it:
+```bash
+$ cd .. && netbeans ./bibliotheque
 ```
