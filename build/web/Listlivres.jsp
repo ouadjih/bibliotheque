@@ -72,7 +72,7 @@
                          <c:when test="${result != null}">
                             <c:forEach var="row" items="${result.rows}">
                                 <sql:query dataSource="${DS}" var="rr"> 
-                                    select * from auteur where num = '${row.num}';
+                                    select nom from auteur where num = '${row.num}';
                                 </sql:query>
                                  <tr>
                                     <td>${row.issn}</td>
@@ -85,8 +85,7 @@
 
                                     <td>${row.domaine}</td>
                                     
-                                    <td>rr[0].nom</td>
-
+                                    <td>Auteur</td>
                                 </tr>
                             </c:forEach>
                          </c:when>
