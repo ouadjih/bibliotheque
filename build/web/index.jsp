@@ -36,7 +36,7 @@
                   <li><hr class="dropdown-divider"></li>
                 </c:if>
                 <li>
-                  <input id="${choice}" name="s.cmd" checked="checked" type="radio" value="${choice}">
+                  <input id="${choice}" name="type" type="radio" value="${choice}">
                   <label for="${choice}"> ${choice}</label>
                 </li>
               </c:forTokens>

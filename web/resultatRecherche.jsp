@@ -1,9 +1,40 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<c:set var="query" value="${param.q}" scope="session" />
+<c:set var="type" value="${param.type}" scope="session" />
 <sql:setDataSource var="DS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/bibliotheque" user="root" password=""/>
-  <sql:query dataSource="${DS}" var="resultat"> 
-    SELECT * FROM livre;
-  </sql:query>
+<c:choose>
+  <c:when test="${type == 'Auteur'}">
+    <sql:query dataSource="${DS}" var="resultat"> 
+      SELECT * FROM livre where num = '${query}';
+    </sql:query>
+  </c:when>
+  <c:when test="${type == 'Livre'}">
+    <sql:query dataSource="${DS}" var="resultat"> 
+      SELECT * FROM livre where titre = '${query}';
+    </sql:query>
+  </c:when>
+  <c:when test="${type == 'Domaine'}">
+    <sql:query dataSource="${DS}" var="resultat"> 
+      SELECT * FROM livre where domaine = '${query}';
+    </sql:query>
+  </c:when>
+  <c:otherwise>
+    <c:choose>
+      <c:when test="${type == null}">
+        <sql:query dataSource="${DS}" var="resultat"> 
+          SELECT * FROM livre;
+        </sql:query>
+      </c:when>
+      <c:otherwise>
+        <sql:query dataSource="${DS}" var="resultat"> 
+          SELECT * FROM livre where titre = '${query}';
+        </sql:query>
+      </c:otherwise>
+    </c:choose>
+  </c:otherwise>
+</c:choose>
+   
 <!--c:set scope="session" value="Auteur a été bien ajouté, voire list des auteurs !" var="sm"/-->
 <html lang="en">
   <head>
